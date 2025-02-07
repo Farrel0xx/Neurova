@@ -7,12 +7,10 @@ import os
 from utils.pdf_processing import extract_text_from_pdf
 from utils.ai_inference import get_response
 
-# 🔥 Load API Keys from GitHub Secrets OR local secrets.toml
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", st.secrets.get("GEMINI_API_KEY"))
 SERPER_API_KEY = os.getenv("SERPER_API_KEY", st.secrets.get("SERPER_API_KEY"))
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", st.secrets.get("GROQ_API_KEY"))
 
-# Custom CSS (Fix tampilan biar lebih clean)
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -58,16 +56,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Header
 st.markdown('<div class="header"><h1>🩺 ​🅽🅴🆄🆁🅾🆅🅰 🔬</h1><h4>"Revolutionizing Healthcare, One Diagnosis at a Time." 🚀</h4></div>', unsafe_allow_html=True)
 
-# Upload PDF
 uploaded_file = st.file_uploader("📄 Upload your blood report (PDF)", type="pdf")
 
 if uploaded_file is not None:
     st.success("✅ PDF uploaded successfully!")
 
-# AI Prompts
 prompt1 = "Analyze this blood test report and provide medical insights."
 prompt2 = "Summarize the blood report findings in a table."
 
@@ -85,9 +80,8 @@ if st.button("📊 Show Summary"):
     st.markdown(response, unsafe_allow_html=True)
 
 if st.button("🏥 Find Best Doctors"):
-    webbrowser.open("https://www.google.com/maps/search/doctors+near+me/")
+    st.markdown('<a href="https://www.google.com/maps/search/doctors+near+me/" target="_blank">Click here to find doctors near you</a>', unsafe_allow_html=True)
 
-# Health Tips
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
     "🍎 Eat more fruits and veggies for a stronger immune system!",
@@ -100,7 +94,6 @@ health_tips = [
 ]
 st.info(f"📌 Health Tip: {random.choice(health_tips)}")
 
-# Blood Test Analysis
 st.subheader("📉 Blood Test Analysis (Advanced Visuals)")
 data = pd.DataFrame({
     "Parameter": ["Hemoglobin", "RBC", "WBC", "Platelets"],
@@ -127,7 +120,6 @@ bubble_chart.update_layout(
 )
 st.plotly_chart(bubble_chart)
 
-# AI Chatbot
 st.markdown("---")
 st.subheader("💬 AI Medical Chatbot")
 
@@ -151,7 +143,6 @@ if user_input:
     with st.chat_message("assistant"):
         st.markdown(ai_response)
 
-# Footer
 st.markdown("""
     <div class="footer">
         Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
