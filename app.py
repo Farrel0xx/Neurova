@@ -81,9 +81,7 @@ if st.button("📊 Show Summary"):
     st.markdown(response, unsafe_allow_html=True)
    
 if st.button("🏥 Find Best Doctors"):
-    open_url("https://www.google.com/maps/search/doctors+near+me/")
-def open_url(url):
-    components.html(f'<meta http-equiv="refresh" content="0;url={url}">', height=0)
+    webbrowser.open("https://www.google.com/maps/search/doctors+near+me/")
 
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
