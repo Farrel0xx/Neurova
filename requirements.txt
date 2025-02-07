@@ -1,0 +1,9 @@
+streamlit
+google-generativeai
+langchain
+langchain_groq
+pdfplumber
+requests
+plotly
+pandas
+matplotlib
