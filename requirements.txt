@@ -1,9 +1,7 @@
 streamlit
-google-generativeai
-langchain
-langchain_groq
+streamlit-components
+pandas
+plotly
+numpy
 pdfplumber
 requests
-plotly
-pandas
-matplotlib
