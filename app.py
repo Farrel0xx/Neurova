@@ -3,11 +3,16 @@ import webbrowser
 import plotly.graph_objects as go
 import pandas as pd
 import random
+import os
 from utils.pdf_processing import extract_text_from_pdf
 from utils.ai_inference import get_response
-from utils.search_tools import find_doctors_nearby
 
-# 🎨 Custom CSS untuk tampilan keren
+# 🔥 Load API Keys from GitHub Secrets OR local secrets.toml
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", st.secrets.get("GEMINI_API_KEY"))
+SERPER_API_KEY = os.getenv("SERPER_API_KEY", st.secrets.get("SERPER_API_KEY"))
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", st.secrets.get("GROQ_API_KEY"))
+
+# Custom CSS (Fix tampilan biar lebih clean)
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -26,73 +31,63 @@ st.markdown("""
 
         .footer {
             position: relative;
-            padding: 10px;
+            padding: 15px;
             background: #1e1e1e;
             color: white;
             border-radius: 10px;
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             margin-top: 30px;
         }
-
         .footer a {
             color: #00c6ff;
             text-decoration: none;
+            font-weight: bold;
         }
-
-        .disclaimer {
-            background-color: #C0C0C0;
-            padding: 10px;
-            color: black;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 14px;
+        .footer-icons {
+            margin-top: 10px;
         }
-
-        .full-width-text {
-            text-align: justify;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
-            max-height: 300px;
-            overflow-y: auto;
-            width: 100%;
+        .footer-icons img {
+            width: 30px;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+        .footer-icons img:hover {
+            transform: scale(1.2);
         }
     </style>
 """, unsafe_allow_html=True)
 
-# 🏥 Header
-st.markdown('<div class="header"><h1>🩺 PathoPro 🔬</h1><h4>Your AI-Powered Medical Assistant</h4></div>', unsafe_allow_html=True)
+# Header
+st.markdown('<div class="header"><h1>🩺 ​🅽🅴🆄🆁🅾🆅🅰 🔬</h1><h4>"Revolutionizing Healthcare, One Diagnosis at a Time." 🚀</h4></div>', unsafe_allow_html=True)
 
-# 📂 Upload File PDF
-uploaded_file = st.file_uploader("💄 Upload your blood report (PDF)", type="pdf")
+# Upload PDF
+uploaded_file = st.file_uploader("📄 Upload your blood report (PDF)", type="pdf")
 
 if uploaded_file is not None:
     st.success("✅ PDF uploaded successfully!")
 
-# 🎯 Prompts untuk AI
+# AI Prompts
 prompt1 = "Analyze this blood test report and provide medical insights."
 prompt2 = "Summarize the blood report findings in a table."
-prompt3_temp = "Provide a short summary of the alarming factors in this blood report."
 
-# 🔥 Gunakan Columns untuk Tampilan Lebih Rapi
 st.markdown("---")
 if st.button("🔍 Analyze Report"):
     text = extract_text_from_pdf(uploaded_file)
     response = get_response(text, prompt1)
     st.subheader("📁 Report Analysis")
-    st.markdown(f'<div class="full-width-text">{response}</div>', unsafe_allow_html=True)
+    st.markdown(response, unsafe_allow_html=True)
 
 if st.button("📊 Show Summary"):
     text = extract_text_from_pdf(uploaded_file)
     response = get_response(text, prompt2)
     st.subheader("📋 Summary")
-    st.markdown(f'<div class="full-width-text">{response}</div>', unsafe_allow_html=True)
+    st.markdown(response, unsafe_allow_html=True)
 
 if st.button("🏥 Find Best Doctors"):
     webbrowser.open("https://www.google.com/maps/search/doctors+near+me/")
 
-# 🔥 Health Tips Section
+# Health Tips
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
     "🍎 Eat more fruits and veggies for a stronger immune system!",
@@ -103,21 +98,10 @@ health_tips = [
     "🚶‍♀️ Walking 30 minutes a day can improve your mood!",
     "🦷 Brush and floss daily for good oral hygiene!"
 ]
-random_tip = random.choice(health_tips)
+st.info(f"📌 Health Tip: {random.choice(health_tips)}")
 
-col1, col2 = st.columns(2)
-
-with col1:
-    if st.button("🏥 Find Nearby Hospital / Pharmacy"):
-        webbrowser.open("https://www.google.com/maps/search/hospital+near+me/")
-
-with col2:
-    st.info(f"📌 Health Tip: {random_tip}")
-
-# 📊 Blood Test Analysis (Bubble Chart & Gauge Chart)
+# Blood Test Analysis
 st.subheader("📉 Blood Test Analysis (Advanced Visuals)")
-
-# Data Dummy untuk Chart
 data = pd.DataFrame({
     "Parameter": ["Hemoglobin", "RBC", "WBC", "Platelets"],
     "Value": [13.5, 4.8, 6500, 250000],
@@ -125,7 +109,6 @@ data = pd.DataFrame({
     "Normal Max": [16, 5.5, 11000, 400000]
 })
 
-# 🎈 Bubble Chart
 bubble_chart = go.Figure()
 bubble_chart.add_trace(go.Scatter(
     x=data["Parameter"],
@@ -142,20 +125,46 @@ bubble_chart.update_layout(
     yaxis_title="Value",
     template="plotly_white"
 )
-
 st.plotly_chart(bubble_chart)
 
-# 🎯 Gauge Chart untuk Hemoglobin
-gauge_chart = go.Figure(go.Indicator(
-    mode="gauge+number",
-    value=13.5,  # Dummy value for Hemoglobin
-    title={'text': "Hemoglobin Level"},
-    gauge={'axis': {'range': [10, 18]},
-           'steps': [{'range': [10, 12], 'color': "red"},
-                     {'range': [12, 16], 'color': "green"},
-                     {'range': [16, 18], 'color': "red"}]}
-))
+# AI Chatbot
+st.markdown("---")
+st.subheader("💬 AI Medical Chatbot")
 
-st.plotly_chart(gauge_chart)
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-st.markdown('<div class="footer">Developed by <a href="#">YourName</a></div>', unsafe_allow_html=True)
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+user_input = st.chat_input("Ask about your health...")
+
+if user_input:
+    st.session_state.messages.append({"role": "user", "content": user_input})
+    with st.chat_message("user"):
+        st.markdown(user_input)
+
+    ai_response = get_response(user_input, "Medical Assistant AI Response")
+    st.session_state.messages.append({"role": "assistant", "content": ai_response})
+
+    with st.chat_message("assistant"):
+        st.markdown(ai_response)
+
+# Footer
+st.markdown("""
+    <div class="footer">
+        Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
+        <div class="footer-icons">
+            <a href="https://www.youtube.com/@yourchannel" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+            </a>
+            <a href="https://www.instagram.com/yourinstagram" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+            </a>
+            <a href="https://github.com/Farrel0xx" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub">
+            </a>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
