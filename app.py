@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import random
 import os
+import streamlit.components.v1 as components
 from utils.pdf_processing import extract_text_from_pdf
 from utils.ai_inference import get_response
 
@@ -78,9 +79,11 @@ if st.button("📊 Show Summary"):
     response = get_response(text, prompt2)
     st.subheader("📋 Summary")
     st.markdown(response, unsafe_allow_html=True)
-
+   
 if st.button("🏥 Find Best Doctors"):
-    st.markdown('<a href="https://www.google.com/maps/search/doctors+near+me/" target="_blank">Click here to find doctors near you</a>', unsafe_allow_html=True)
+    open_url("https://www.google.com/maps/search/doctors+near+me/")
+def open_url(url):
+    components.html(f'<meta http-equiv="refresh" content="0;url={url}">', height=0)
 
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
