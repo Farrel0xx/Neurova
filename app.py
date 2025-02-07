@@ -81,7 +81,9 @@ if st.button("📊 Show Summary"):
     st.markdown(response, unsafe_allow_html=True)
    
 if st.button("🏥 Find Best Doctors"):
-    webbrowser.open("https://www.google.com/maps/search/doctors+near+me/")
+    maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.605993567362!2d110.36949037401476!3d-7.829479377190809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5791f5d5d5d5%3A0x8e3c3d5d5d5d5d5!2sDoctor+Near+Me!5e0!3m2!1sen!2sid!4v1649457392485!5m2!1sen!2sid"
+    st.markdown(f'<iframe src="{maps_url}" width="700" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>', unsafe_allow_html=True)
+
 
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
