@@ -8,10 +8,12 @@ import streamlit.components.v1 as components
 from utils.pdf_processing import extract_text_from_pdf
 from utils.ai_inference import get_response
 
+# API Keys (Optional)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", st.secrets.get("GEMINI_API_KEY"))
 SERPER_API_KEY = os.getenv("SERPER_API_KEY", st.secrets.get("SERPER_API_KEY"))
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", st.secrets.get("GROQ_API_KEY"))
 
+# Custom CSS
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -43,27 +45,19 @@ st.markdown("""
             text-decoration: none;
             font-weight: bold;
         }
-        .footer-icons {
-            margin-top: 10px;
-        }
-        .footer-icons img {
-            width: 30px;
-            margin: 0 10px;
-            transition: transform 0.3s ease;
-        }
-        .footer-icons img:hover {
-            transform: scale(1.2);
-        }
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="header"><h1>🩺 ​🅽🅴🆄🆁🅾🆅🅰 🔬</h1><h4>"Revolutionizing Healthcare, One Diagnosis at a Time." 🚀</h4></div>', unsafe_allow_html=True)
+# Header App
+st.markdown('<div class="header"><h1>🩺 NEUROVA 🔬</h1><h4>"Revolutionizing Healthcare, One Diagnosis at a Time." 🚀</h4></div>', unsafe_allow_html=True)
 
+# File Uploader
 uploaded_file = st.file_uploader("📄 Upload your blood report (PDF)", type="pdf")
 
 if uploaded_file is not None:
     st.success("✅ PDF uploaded successfully!")
 
+# Buttons for AI Analysis
 prompt1 = "Analyze this blood test report and provide medical insights."
 prompt2 = "Summarize the blood report findings in a table."
 
@@ -79,12 +73,18 @@ if st.button("📊 Show Summary"):
     response = get_response(text, prompt2)
     st.subheader("📋 Summary")
     st.markdown(response, unsafe_allow_html=True)
-   
-if st.button("🏥 Find Best Doctors"):
-    maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.605993567362!2d110.36949037401476!3d-7.829479377190809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5791f5d5d5d5%3A0x8e3c3d5d5d5d5d5!2sDoctor+Near+Me!5e0!3m2!1sen!2sid!4v1649457392485!5m2!1sen!2sid"
-    st.markdown(f'<iframe src="{maps_url}" width="700" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>', unsafe_allow_html=True)
 
+# ✅ Find Doctors Button (Embed Google Maps)
+st.subheader("🏥 Find Best Doctors Nearby")
+if st.button("🔍 Find Best Doctors"):
+    maps_url = "https://www.google.com/maps/search/doctors+near+me/"
+    
+    components.html(
+        f'<iframe src="{maps_url}" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+        height=500
+    )
 
+# Health Tips
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
     "🍎 Eat more fruits and veggies for a stronger immune system!",
@@ -97,6 +97,7 @@ health_tips = [
 ]
 st.info(f"📌 Health Tip: {random.choice(health_tips)}")
 
+# Blood Test Visualization
 st.subheader("📉 Blood Test Analysis (Advanced Visuals)")
 data = pd.DataFrame({
     "Parameter": ["Hemoglobin", "RBC", "WBC", "Platelets"],
@@ -123,6 +124,7 @@ bubble_chart.update_layout(
 )
 st.plotly_chart(bubble_chart)
 
+# AI Medical Chatbot
 st.markdown("---")
 st.subheader("💬 AI Medical Chatbot")
 
@@ -146,19 +148,13 @@ if user_input:
     with st.chat_message("assistant"):
         st.markdown(ai_response)
 
+# Footer
 st.markdown("""
     <div class="footer">
         Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
-        <div class="footer-icons">
-            <a href="https://www.youtube.com/@yourchannel" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-            </a>
-            <a href="https://www.instagram.com/yourinstagram" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-            </a>
-            <a href="https://github.com/Farrel0xx" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub">
-            </a>
-        </div>
+        <br>Follow me on:  
+        <a href="https://github.com/Farrel0xx" target="_blank">GitHub</a> | 
+        <a href="https://www.instagram.com/yourinstagram" target="_blank">Instagram</a> | 
+        <a href="https://www.youtube.com/@yourchannel" target="_blank">YouTube</a>
     </div>
 """, unsafe_allow_html=True)
