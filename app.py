@@ -81,7 +81,13 @@ if st.button("📊 Show Summary"):
     st.markdown(response, unsafe_allow_html=True)
 
 if st.button("🏥 Find Best Doctors"):
-    webbrowser.open("https://www.google.com/maps/search/doctors+near+me/")
+    maps_url = "https://www.google.com/maps/search/doctors+near+me/"
+    
+    components.html(
+        f'<iframe src="{maps_url}" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+        height=500
+    )
+
 
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
