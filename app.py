@@ -63,7 +63,6 @@ uploaded_file = st.file_uploader("📄 Upload your blood report (PDF)", type="pd
 if uploaded_file is not None:
     st.success("✅ PDF uploaded successfully!")
 
-# AI Prompts
 prompt1 = "Analyze this blood test report and provide medical insights."
 prompt2 = "Summarize the blood report findings in a table."
 
@@ -81,13 +80,7 @@ if st.button("📊 Show Summary"):
     st.markdown(response, unsafe_allow_html=True)
 
 if st.button("🏥 Find Best Doctors"):
-    maps_url = "https://www.google.com/maps/search/doctors+near+me/"
-    
-    components.html(
-        f'<iframe src="{maps_url}" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
-        height=500
-    )
-
+    st.write("🔗 [Find Best Doctors](https://www.google.com/maps/search/doctors+near+me/)")
 
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
