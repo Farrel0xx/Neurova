@@ -145,9 +145,9 @@ if user_input:
 
 st.markdown("""
 <div class="footer">
-    Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
+    Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀 || Copyright 2025 ©  
     <div class="footer-icons">
-        <a href="https://www.youtube.com/@MedProject_xD" target="_blank">
+        <a href="https://youtube.com/@medproject_xd?si=Iiwzsaub9ZVBRf7P" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
         </a>
         <a href="https://www.instagram.com/f4rrel_xd/" target="_blank">
