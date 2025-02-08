@@ -80,7 +80,7 @@ if st.button("📊 Show Summary"):
     st.markdown(response, unsafe_allow_html=True)
 
 if st.button("🏥 Find Best Doctors"):
-    st.write("🔗 [Find Best Doctors](https://www.google.com/maps/search/doctors+near+me/)")
+    st.write("🔗 [Click here to find your best doctors...](https://www.google.com/maps/search/doctors+near+me/)")
 
 health_tips = [
     "💧 Stay hydrated: Drink at least 8 glasses of water daily!",
