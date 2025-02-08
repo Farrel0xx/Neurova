@@ -1,8 +1,9 @@
-streamlit==1.30.0
-pandas==2.0.3
-plotly==5.20.0
-numpy==1.26.0
-pdfplumber==0.10.2
-requests==2.31.0
-google.generativeai
+streamlit
+google-generativeai
+langchain
 langchain_groq
+pdfplumber
+requests
+plotly
+pandas
+matplotlib
