@@ -144,18 +144,26 @@ if user_input:
         st.markdown(ai_response)
 
 st.markdown("""
-    <div class="footer">
-        Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
-        <div class="footer-icons">
-            <a href="https://www.youtube.com/@yourchannel" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-            </a>
-            <a href="https://www.instagram.com/yourinstagram" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-            </a>
-            <a href="https://github.com/Farrel0xx" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub">
-            </a>
-        </div>
+<div class="footer">
+    Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
+    <div class="footer-icons">
+        <a href="https://www.youtube.com/@yourchannel" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+        </a>
+        <a href="https://www.instagram.com/f4rrel_xd/" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        </a>
+        <a href="https://github.com/Farrel0xx" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub">
+        </a>
+        <!-- Added Telegram -->
+        <a href="https://t.me/yourtelegram" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram">
+        </a>
+        <!-- Updated Saweria logo -->
+        <a href="https://saweria.co/ghost0x" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2108/2108625.png" alt="Saweria">
+        </a>
     </div>
+</div>
 """, unsafe_allow_html=True)
