@@ -64,8 +64,8 @@ Contributions are welcome! Feel free to fork this repo, create a new branch, and
 
 ## 📞 **Contact & Support**  
 📧 **Email**: ghost404sec@gmail.com  
-🌐 **Website**: [yourwebsite.com](https://yourwebsite.com)  
-🔗 **GitHub**: [Neurova AI Repo](https://github.com/username/neurova-ai)  
+🌐 **Website**: [Neurova AI Website](https://neurova.streamlit.app)  
+🔗 **GitHub**: [Neurova AI Repo](https://github.com/Farrel0xx/neurova-ai)  
 
 ---
 🚀 **Made with ❤️ by [Farrel0xx](https://github.com/Farrel0xx)**  
