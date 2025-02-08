@@ -147,7 +147,7 @@ st.markdown("""
 <div class="footer">
     Developed by <a href="https://github.com/Farrel0xx" target="_blank">Farrel0xx</a> 🚀  
     <div class="footer-icons">
-        <a href="https://www.youtube.com/@yourchannel" target="_blank">
+        <a href="https://www.youtube.com/@MedProject_xD" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
         </a>
         <a href="https://www.instagram.com/f4rrel_xd/" target="_blank">
